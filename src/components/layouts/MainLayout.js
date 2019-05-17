@@ -2,13 +2,13 @@ import React from 'react';
 import Navigation from "../elements/Navigation";
 
 export default props => {
-    return (
-        <div>
-            <Navigation />
+  return (
+    <div>
+      <header> <Navigation /> </header>
 
-            {props.children}
+      {props.children}
 
-            <h3>footer</h3>
-        </div>
-    );
+      <footer> footer </footer> 
+    </div>
+  );
 }
