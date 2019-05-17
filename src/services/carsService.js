@@ -17,7 +17,3 @@ export const getBrands = () => {
 
   return Object.keys(result);
 };
-
-export const getCarsByModel = (model) => {
-  return carsData.filter((item) => (model === item.name));
-};
