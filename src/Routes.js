@@ -10,6 +10,7 @@ export default () => {
       <Route exact path="/" component={brand} />
       <Route path="/all" component={all} />
       <Route path="/brands/:brand" component={carsByBrand} />
+      {/* <Route path="/brands/:brand/:" component={carsByBrand} /> */}
     </Switch>
   )
 }
