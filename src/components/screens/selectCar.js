@@ -5,7 +5,26 @@ const allData = getAll();
 
 export const selectCar = props => {
   const car = props.match.params.carsByBrand;
-  console.log(car);
-  
-  return (0);
+
+  return (
+    <div>
+      {allData.map((item, index) => <div key={index}> {car === item.model ? 
+        <div>
+          <div> {item.name} </div>
+          <div> <img src={require(`../../images/${item.img}`)} alt="brand" /> </div>
+          <div> {item.model} </div>
+          <div> <img src={require(`../../images/${item.imgModel}`)} alt="model" /> </div>
+          <div>Потужність, к.с.: {item.power} </div>
+          <div>Час розгону (0-100 км / ч), з: {item.time} </div>
+          <div>Споряджена маса, кг: {item.weight} </div>
+          <div>Тип палива: {item.engine} </div>
+          <div>Об'єм двигуна, куб.см: {item.engineVolume} </div>
+          <div>Колір: {item.color} </div>
+          <div>Тип коробки передач: {item.transmission} </div>
+          <div>Об'єм бензобаку, л:{item.fuelTank} </div>
+          <div>Витрата палива (змішаний цикл), л. на 100 км: {item.fuelConsumption} </div>
+        </div> : ''}
+      </div>)}
+    </div>
+  );
 }
