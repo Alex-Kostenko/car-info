@@ -8,7 +8,7 @@ export const CommentForm = ({id}) => {
   const handleChange = (event) => { 
     const value  = event.target.value;
     setAreaValue(value);
-  }
+  };
 
   const handleClick = () => {
     const obj = {};
@@ -28,11 +28,10 @@ export const CommentForm = ({id}) => {
     obj.text = areaValue;
     obj.date = now;
 
-    createComment(id, obj)
-
-    // console.log(obj);
-
+    createComment(id, obj);
     setAreaValue('');
+
+    window.location.reload()
   }
 
   return (
@@ -42,14 +41,3 @@ export const CommentForm = ({id}) => {
     </div>
   );
 }
-
-// export const ListComment = () => {
-
-//   return (
-//     <div>
-//       <textarea onChange={handleChange} />
-//       <button onClick={handleClick}> push </button>
-//     </div>
-//   );
-// }
-
