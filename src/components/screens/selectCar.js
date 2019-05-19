@@ -1,10 +1,14 @@
 import React from 'react';
 import { getAll } from '../../services/carsService';
+import { CommentForm } from './commentForm';
+import { CommentsList } from './commentsList';
 
 const allData = getAll();
 
+
 export const selectCar = props => {
   const car = props.match.params.carsByBrand;
+  const ID =  allData.findIndex((x) => x.model === car);
 
   return (
     <div>
@@ -23,8 +27,11 @@ export const selectCar = props => {
           <div>Тип коробки передач: {item.transmission} </div>
           <div>Об'єм бензобаку, л:{item.fuelTank} </div>
           <div>Витрата палива (змішаний цикл), л. на 100 км: {item.fuelConsumption} </div>
-        </div> : ''}
+        </div> : ''} 
       </div>)}
+
+      <CommentForm id={ID} />
+      <CommentsList id={ID} />
     </div>
   );
 }

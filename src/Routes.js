@@ -9,7 +9,6 @@ import { selectCar } from './components/screens/selectCar';
 export default () => {
   return (
     <Switch>
-      {/* <Route path="/all" component={all} /> */}
       <Route exact path="/" component={brand} />
       <Route exact path="/brands/:brand" component={carsByBrand} />
       <Route path="/brands/:brand/:carsByBrand" component={selectCar} />
