@@ -5,7 +5,6 @@ export default () => {
   return (
     <div>
       <> <Link to="/"> brands </Link> </>
-      {/* <> <Link to="/all"> all </Link> </> */}
     </div>
   );
 }

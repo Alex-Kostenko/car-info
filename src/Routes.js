@@ -4,7 +4,6 @@ import { brand } from './components/screens/brands';
 import { carsByBrand } from './components/screens/carsByBrand';
 import { selectCar } from './components/screens/selectCar';
 
-
 export default () => {
   return (
     <Switch>

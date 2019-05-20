@@ -3,9 +3,9 @@ import { getAll } from '../../services/carsService';
 
 const allData = getAll();
 
-export const all = () => {  
+export const all = () => {
   console.log(allData);
-  
+
   return (
     <>
       {allData.map((item, index) => (
