@@ -2,7 +2,6 @@ import React from 'react';
 import { comments } from '../../services/commentsService';
 import { Card, Row, Col } from 'react-bootstrap';
 
-
 export const CommentsList = ({ id }) => {
 
   let arr = comments.concat([]);
