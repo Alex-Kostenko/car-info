@@ -23,7 +23,7 @@ export const carsByBrand = props => {
 
   return (arrCarsByBrand.map((item, index) => (
     <Col sm={6} key={index}> 
-      <Link style={style[1]} to={`/brands/${brand}/${item.model}`}>
+      <Link style={style[1]} to={`/${brand}/${item.model}`}>
         <ListGroup style={style[2]} > 
           <ListGroup.Item> <h4>{item.model} </h4> </ListGroup.Item>
           <ListGroup.Item> <Image style={style[0]} src={require(`../../images/${item.imgModel}`)} alt="model" /> </ListGroup.Item>

@@ -19,7 +19,7 @@ export const brand = () => {
   return brandsData.map(({name, img}, index) => (
     <Col key={index} sm={4}>
       <hr />
-      <Link to={`/brands/${name}`}> 
+      <Link to={`/${name}`}> 
         <div style={style[1]}>
           <h4>{name}</h4>
           <Image style={style[0]} src={require(`../../images/${img}`)} alt="brand" /> 

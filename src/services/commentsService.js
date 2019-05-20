@@ -8,7 +8,5 @@ export const createComment = (carId, payload) => {
     const comment = Object.assign({}, payload, {carId});
     comments.push(comment);
 
-    console.log(comments);
-    
     localStorage.setItem('comments', JSON.stringify(comments));
 };

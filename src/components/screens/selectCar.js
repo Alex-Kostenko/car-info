@@ -13,17 +13,16 @@ export const selectCar = props => {
     { height: '250px' },
     { width: '100%' },
     { display: 'flex', width: '100%'},
-    { justifyContent: 'center', alignItems: 'center', width: '100%', textAlign: 'center'}
+    { justifyContent: 'center', alignItems: 'center', width: '100%', textAlign: 'center', margin: '0',}
   ]
 
   const car = props.match.params.carsByBrand;
   const ID =  allData.findIndex((item) => item.model === car);
 
   return (
-    <div style={style[2]}>
+    <Col sm={12}>
       {allData.map((item, index) => <div key={index}> {car === item.model ? 
         <ListGroup>
-
           <ListGroup.Item style={style[3]}>
             <Row style={style[4]}>
               <Col sm={6}>
@@ -36,7 +35,6 @@ export const selectCar = props => {
               </Col>
             </Row>
           </ListGroup.Item>
-        
           <ListGroup.Item>Потужність, к.с.: {item.power} </ListGroup.Item>
           <ListGroup.Item>Час розгону (0-100 км / ч), з: {item.time} </ListGroup.Item>
           <ListGroup.Item>Споряджена маса, кг: {item.weight} </ListGroup.Item>
@@ -51,6 +49,6 @@ export const selectCar = props => {
 
       <CommentForm id={ID} />
       <CommentsList id={ID} />
-    </div>
+    </Col>
   );
 }

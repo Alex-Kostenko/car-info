@@ -4,11 +4,9 @@ import { Card, Row, Col } from 'react-bootstrap';
 
 
 export const CommentsList = ({ id }) => {
-  console.log(comments);
-  console.log(id);
 
   let arr = comments.concat([]);
- 
+
   return (
     <Row> 
     {arr.map((item, index) => (

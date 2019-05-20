@@ -8,8 +8,8 @@ export default () => {
   return (
     <Switch>
       <Route exact path="/" component={brand} />
-      <Route exact path="/brands/:brand" component={carsByBrand} />
-      <Route path="/brands/:brand/:carsByBrand" component={selectCar} />
+      <Route exact path="/:brand" component={carsByBrand} />
+      <Route path="/:brand/:carsByBrand" component={selectCar} />
     </Switch>
   )
 }
