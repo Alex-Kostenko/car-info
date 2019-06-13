@@ -17,6 +17,18 @@ export const CommentForm = ({id}) => {
     setAreaValue(value);
   };
 
+  const nowData = () => {
+    const date = new Date();
+
+    const day = date.getDate();
+    const month = date.getMonth();
+    const year = date.getFullYear();
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    const now = day + '/' + month + '/' + year + ' ' + hours + ':' + minutes;
+    return now;
+  };
+
   const handleClick = () => {
     const obj = {};
     const date = new Date();
@@ -39,8 +51,18 @@ export const CommentForm = ({id}) => {
 
   return (
     <div style={style[0]}>
-      <textarea style={style[1]} onChange={handleChange} value={areaValue} />
-      <Button variant="outline-success" style={style[2]} onClick={handleClick}> ADD </Button>
+      <form action="http://localhost:3000/submit" method="post">
+        <label > User name <input style={style[1]} type="text" name="userName" />  </label>
+        <label > Comment <input style={style[1]} name="comment" onChange={handleChange} value={areaValue} /> </label>
+        <input type="hidden" name='data' value={nowData()}/>
+        <input type="hidden" name='id' value={id}/>
+        {/* <input type="submit" style={style[2]} value="Отправить" />  onClick={handleClick} */}
+        <Button variant="outline-success" type="submit" style={style[2]} > ADD </Button> {/* onClick={handleClick} */}
+      </form>
     </div>
+    // <div style={style[0]}>
+    //   <textarea style={style[1]} name="userName" onChange={handleChange} value={areaValue} />
+    //   <Button variant="outline-success" style={style[2]} onClick={handleClick}> ADD </Button>
+    // </div>
   );
 }
