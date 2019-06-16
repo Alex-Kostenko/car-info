@@ -50,19 +50,20 @@ export const CommentForm = ({id}) => {
   }
 
   return (
-    <div style={style[0]}>
+    <div className="container">
       <form action="http://localhost:3000/submit" method="post">
-        <label > User name <input style={style[1]} type="text" name="userName" />  </label>
-        <label > Comment <input style={style[1]} name="comment" onChange={handleChange} value={areaValue} /> </label>
-        <input type="hidden" name='data' value={nowData()}/>
-        <input type="hidden" name='id' value={id}/>
-        {/* <input type="submit" style={style[2]} value="Отправить" />  onClick={handleClick} */}
-        <Button variant="outline-success" type="submit" style={style[2]} > ADD </Button> {/* onClick={handleClick} */}
+        <div className="form-group">
+          <div className="row justify-content-center">
+            <input className="form-control col-8 my-2" type="text" name="userName" placeholder="User name" />
+            <textarea className="form-control col-8 my-2" name="comment" onChange={handleChange} value={areaValue} placeholder="Comment" />
+            <Button variant="outline-primary" type="submit" className="w-100 col-8 my-2" value="Submit"> Submit </Button>{/* onClick={handleClick} */}
+          </div>
+          <input type="hidden" name='data' value={nowData()} />
+          <input type="hidden" name='id' value={id} />
+        </div>
       </form>
     </div>
-    // <div style={style[0]}>
-    //   <textarea style={style[1]} name="userName" onChange={handleChange} value={areaValue} />
-    //   <Button variant="outline-success" style={style[2]} onClick={handleClick}> ADD </Button>
-    // </div>
+    
+
   );
 }
