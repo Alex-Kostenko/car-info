@@ -14,7 +14,7 @@ export const selectCar = props => {
     { width: '100%' },
     { display: 'flex', width: '100%'},
     { justifyContent: 'center', alignItems: 'center', width: '100%', textAlign: 'center', margin: '0',}
-  ]
+  ];
 
   const car = props.match.params.carsByBrand;
   const ID =  allData.findIndex((item) => item.model === car);
