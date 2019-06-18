@@ -13,8 +13,6 @@ import Auth from './Auth/Auth';
 import history from './history';
 
 const auth = new Auth();
-console.log('auth', auth);
-
 
 const handleAuthentication = ({location}) => {
   if (/access_token|id_token|error/.test(location.hash)) {
@@ -27,7 +25,7 @@ export const makeMainRoutes = () => {
       <Router history={history}>
         <div>
           <Route path="/" render={(props) => <App auth={auth} {...props} />} />
-          <Route path="/home" render={(props) => <Home auth={auth} {...props} />} />
+          {/* <Route path="/home" render={(props) => <Home auth={auth} {...props} />} /> */}
           <Route path="/callback" render={(props) => {
             handleAuthentication(props);
             return <Callback {...props} /> 

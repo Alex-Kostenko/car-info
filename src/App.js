@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import { Navbar, Button } from 'react-bootstrap';
 import './App.css';
 
+import { makeRoutes } from './Routes';
+import { Container, Row } from 'react-bootstrap';
+import { BrowserRouter } from 'react-router-dom';
+import MainLayout from './components/layouts/MainLayout';
+
 class App extends Component {
   goTo(route) {
     this.props.history.replace(`/${route}`)
@@ -26,10 +31,46 @@ class App extends Component {
   render() {
     const { isAuthenticated } = this.props.auth;
     console.log('isAuthenticated', isAuthenticated);
-    
+
 
     return (
       <div>
+        <Navbar fixed="top" bg="dark" variant="dark">
+          <Navbar.Brand>
+            <a href="/">Car-Info</a>
+          </Navbar.Brand>
+          {!isAuthenticated() && (
+            <Button
+              id="qsLoginBtn"
+              bsstyle="primary"
+              className="btn-margin"
+              onClick={this.login.bind(this)}>
+              Log In
+            </Button>
+          )
+          }
+          {isAuthenticated() && (
+            <Button
+              id="qsLogoutBtn"
+              bsstyle="primary"
+              className="btn-margin"
+              onClick={this.logout.bind(this)}>
+              Log Out
+            </Button>
+          )
+          }
+        </Navbar>
+      <div className="container m-top">
+      <Container>
+            <BrowserRouter>
+              <MainLayout>
+                <Row>
+                 { makeRoutes()}
+                </Row>
+              </MainLayout>
+            </BrowserRouter>
+          </Container>
+      </div>
         {/* <Navbar fluid>
           <Navbar.Header>
             <Navbar.Brand>
@@ -69,30 +110,7 @@ class App extends Component {
           </Navbar.Header>
         </Navbar> */}
 
-{
-              !isAuthenticated() && (
-                <Button
-                  id="qsLoginBtn"
-                  bsstyle="primary"
-                  className="btn-margin"
-                  onClick={this.login.bind(this)}
-                >
-                  Log In
-                  </Button>
-              )
-            }
-            {
-              isAuthenticated() && (
-                <Button
-                  id="qsLogoutBtn"
-                  bsstyle="primary"
-                  className="btn-margin"
-                  onClick={this.logout.bind(this)}
-                >
-                  Log Out
-                  </Button>
-              )
-            }
+
       </div>
     );
   }
