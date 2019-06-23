@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { getAll } from '../../services/carsService';
 import { CommentForm } from './commentsForm';
 import { CommentsList } from './commentsList';
@@ -6,9 +6,9 @@ import { ListGroup, Image, Row, Col } from 'react-bootstrap';
 
 const allData = getAll();
 
-export const selectCar = props => {
+export class SelectCar extends Component {
 
-  const style = [
+  style = [
     { height: '100px' },
     { height: '250px' },
     { width: '100%' },
@@ -16,22 +16,40 @@ export const selectCar = props => {
     { justifyContent: 'center', alignItems: 'center', width: '100%', textAlign: 'center', margin: '0',}
   ]
 
-  const car = props.match.params.carsByBrand;
-  const ID =  allData.findIndex((item) => item.model === car);
+  car = this.props.match.params.carsByBrand;
+  ID =  allData.findIndex((item) => item.model === this.car);
+
+  componentWillMount() {
+    this.setState({ profile: {} });
+    const { userProfile, getProfile } = this.props.auth;
+    if (!userProfile) {
+      getProfile((err, profile) => {
+        this.setState({ profile });
+      });
+    } else {
+      this.setState({ profile: userProfile });
+    }
+  }
+
+  render(){
+    const { isAuthenticated } = this.props.auth;
+    const { profile } = this.state;
+    console.log(profile);
+    
 
   return (
     <Col sm={12}>
-      {allData.map((item, index) => <div key={index}> {car === item.model ? 
+      {allData.map((item, index) => <div key={index}> {this.car === item.model ? 
         <ListGroup>
-          <ListGroup.Item style={style[3]}>
-            <Row style={style[4]}>
+          <ListGroup.Item style={this.style[3]}>
+            <Row style={this.style[4]}>
               <Col sm={6}>
                 <div> {item.name} </div>
-                <div> <Image style={style[0]} src={require(`../../images/${item.img}`)} alt="brand" /> </div>
+                <div> <Image style={this.style[0]} src={require(`../../images/${item.img}`)} alt="brand" /> </div>
               </Col>
               <Col sm={6}>
                 <div> {item.model} </div>
-                <div> <Image style={style[1]} src={require(`../../images/${item.imgModel}`)} alt="model" /> </div>
+                <div> <Image style={this.style[1]} src={require(`../../images/${item.imgModel}`)} alt="model" /> </div>
               </Col>
             </Row>
           </ListGroup.Item>
@@ -47,8 +65,25 @@ export const selectCar = props => {
         </ListGroup> : ''}
       </div>)}
 
-      <CommentForm id={ID} />
-      <CommentsList id={ID} />
+      <div className="container">
+        {
+          isAuthenticated() && (
+            <div>
+            <h4>{profile.name}</h4>
+            <CommentForm id={this.ID} name={profile.name}/>
+          </div>
+            )
+        }
+        {
+          !isAuthenticated() && (
+              <h4>
+                You are not logged in! Please Log In to continue.
+              </h4>
+            )
+        }
+      </div>
+      <CommentsList id={this.ID} />
     </Col>
   );
+}
 }

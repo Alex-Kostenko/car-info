@@ -1,11 +1,5 @@
-// import React from 'react';
-// import { Route, Switch } from "react-router-dom";
-import { brand } from './components/screens/brands';
-import { carsByBrand } from './components/screens/carsByBrand';
-import { selectCar } from './components/screens/selectCar';
-
 import React from 'react';
-import { Route, Router, Switch } from 'react-router-dom';
+import { Route, Router } from 'react-router-dom';
 import App from './App';
 import Home from './Home/Home';
 import Callback from './Callback/Callback';
@@ -25,7 +19,7 @@ export const makeMainRoutes = () => {
       <Router history={history}>
         <div>
           <Route path="/" render={(props) => <App auth={auth} {...props} />} />
-          {/* <Route path="/home" render={(props) => <Home auth={auth} {...props} />} /> */}
+          <Route path="/home" render={(props) => <Home auth={auth} {...props} />} />
           <Route path="/callback" render={(props) => {
             handleAuthentication(props);
             return <Callback {...props} /> 
@@ -34,15 +28,3 @@ export const makeMainRoutes = () => {
       </Router>
   );
 }
-
-
-export const makeRoutes = () => {
-  return (
-    <Switch>
-      <Route exact path="/" component={brand} />
-      <Route exact path="/:brand" component={carsByBrand} />
-      <Route path="/:brand/:carsByBrand" component={selectCar} />
-    </Switch>
-  )
-}
-

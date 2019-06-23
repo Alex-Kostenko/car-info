@@ -2,7 +2,7 @@ import React from 'react';
 import { createComment } from '../../services/commentsService';
 import { Button } from 'react-bootstrap';
 
-export const CommentForm = ({id}) => {
+export const CommentForm = ({id, name}) => {
 
   const [areaValue, setAreaValue] = React.useState('');
   const style=[
@@ -28,7 +28,7 @@ export const CommentForm = ({id}) => {
     const minutes = date.getMinutes();
     const now = day + '/' + month + '/' + year + ' ' + hours + ':' + minutes;
 
-    obj.name = 'user';
+    obj.name = name;
     obj.text = areaValue;
     obj.date = now;
 
